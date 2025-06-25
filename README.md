@@ -1,5 +1,184 @@
 # 🤖 Trading Machine
 
+A professional cryptocurrency trading bot supporting multiple exchanges, strategy backtesting, Telegram interaction, and more.
+
+## ✨ Features
+
+- 🏢 **Multi-Exchange Support**: Binance, OKX, Bybit
+- 📊 **Strategy System**: MA crossover, RSI strategy, etc.
+- 🔄 **Backtesting**: Validate strategies with historical data
+- 📱 **Telegram Integration**: Real-time notifications and interaction
+- ⚡ **Asynchronous Architecture**: High-performance concurrent processing
+- 🛡️ **Risk Management**: Stop loss/take profit, position management
+- 📈 **Data Fetching**: Real-time and historical K-line data
+
+## 📁 Project Structure
+
+```
+trading-machine/
+├── trading_bot/
+│   ├── config/          # Configuration management
+│   ├── exchanges/       # Exchange interfaces
+│   ├── strategies/      # Trading strategies
+│   ├── backtesting/     # Backtesting engine
+│   ├── telegram_bot/    # Telegram bot
+│   ├── core/           # Core trading engine
+│   └── utils/          # Utility functions
+├── main.py             # Main entry point
+├── requirements.txt    # Dependencies
+└── .env.example       # Environment variable template
+```
+
+## 🚀 Quick Start
+
+### 1. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Configure environment variables
+
+Copy `.env.example` to `.env` and fill in your API keys:
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file and enter your exchange and Telegram configuration.
+
+### 3. Run live trading
+
+```bash
+python main.py live
+```
+
+### 4. Run strategy backtesting
+
+```bash
+# Backtest MA crossover strategy
+python main.py backtest --strategy ma_crossover --symbol BTC/USDT --days 30
+
+# Backtest RSI strategy
+python main.py backtest --strategy rsi --symbol ETH/USDT --days 60
+```
+
+## 📊 Strategy Description
+
+### MA Crossover Strategy
+- Buy when fast MA crosses above slow MA
+- Sell when fast MA crosses below slow MA
+- Combine RSI indicator to filter signals
+
+### RSI Strategy
+- Buy on RSI oversold rebound
+- Sell on RSI overbought pullback
+- Supports divergence signal recognition
+
+## 🔧 Exchange Configuration
+
+### Binance
+1. Log in to your Binance account
+2. Create API keys (testnet recommended)
+3. Set permissions: Spot trading, Futures trading, Read info
+
+### OKX
+1. Log in to your OKX account
+2. Create API keys
+3. Set trading permissions and IP whitelist
+
+### Bybit
+1. Log in to your Bybit account
+2. Create API keys
+3. Set appropriate permissions
+
+## 📱 Telegram Bot Setup
+
+### 1. Create a bot
+1. Search for @BotFather in Telegram
+2. Send `/newbot` to create a new bot
+3. Get the Bot Token
+
+### 2. Get Chat ID
+1. Add the bot to a group or chat privately
+2. Send a message to the bot
+3. Visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates` to get the Chat ID
+
+### 3. Available commands
+- `/balance [exchange]` - View balance
+- `/positions [exchange]` - View positions
+- `/orders [exchange]` - View orders
+- `/buy <exchange> <symbol> <amount> [price]` - Buy
+- `/sell <exchange> <symbol> <amount> [price]` - Sell
+- `/cancel <exchange> <order_id> <symbol>` - Cancel order
+- `/price <exchange> <symbol>` - View price
+- `/leverage <exchange> <symbol> <leverage>` - Set leverage
+
+## ⚠️ Risk Warning
+
+1. **Use testnet**: Strongly recommended to run in testnet environment first
+2. **Small amount testing**: Test with small funds before live trading
+3. **Risk management**: Set reasonable stop loss and position size
+4. **Monitor operation**: Regularly check bot status
+5. **Strategy validation**: Fully backtest and validate strategy effectiveness
+
+## 🛠️ Development Notes
+
+### Add a new strategy
+1. Inherit from `BaseStrategy`
+2. Implement the `analyze()` method
+3. Register in `strategies/__init__.py`
+
+### Add a new exchange
+1. Inherit from `BaseExchange`
+2. Implement all abstract methods
+3. Register in `exchanges/__init__.py`
+
+### Custom indicators
+Use the `talib` library in strategies to calculate technical indicators.
+
+## 📈 Backtest Result Example
+
+```
+📊 BACKTEST RESULTS
+==================================================
+Strategy: ma_crossover
+Symbol: BTC/USDT
+Period: 2024-05-25 to 2024-06-25 (30 days)
+
+Performance:
+  Initial Balance: $10,000.00
+  Final Balance: $10,456.78
+  Total Return: $456.78 (4.57%)
+  Max Drawdown: $234.56 (2.35%)
+  Sharpe Ratio: 1.23
+
+Trade Statistics:
+  Total Trades: 15
+  Winning Trades: 9
+  Losing Trades: 6
+  Win Rate: 60.0%
+  Average Win: $123.45
+  Average Loss: $67.89
+  Profit Factor: 1.82
+```
+
+## 📄 License
+
+This project is for learning and research purposes only. Users bear their own trading risks.
+
+## 🤝 Contribution
+
+Feel free to submit Issues and Pull Requests to improve the project.
+
+## 📞 Support
+
+If you have any questions, please create an Issue or contact the developer.
+
+---
+
+# 中文版
+
 一个专业的加密货币交易机器人，支持多交易所、策略回测、Telegram交互等功能。
 
 ## ✨ 功能特性
